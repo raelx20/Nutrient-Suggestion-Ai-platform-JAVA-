@@ -1,0 +1,54 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-vitaledge}
+      POSTGRES_USER: ${POSTGRES_USER:-vitaledge}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vitaledge}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-vitaledge} -d ${POSTGRES_DB:-vitaledge}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-vitaledge}
+      DB_USER: ${POSTGRES_USER:-vitaledge}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-vitaledge}
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY must be set (>= 32 chars)}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-15}
+      REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-7}
+      EMAIL_VERIFICATION_EXPIRE_HOURS: ${EMAIL_VERIFICATION_EXPIRE_HOURS:-24}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000,http://localhost:8080}
+      REDIS_PREFIX: ${REDIS_PREFIX:-vitaledge}
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:

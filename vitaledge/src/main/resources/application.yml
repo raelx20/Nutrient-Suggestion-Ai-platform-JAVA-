@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: vitaledge-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/vitaledge}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres_password}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        format_sql: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379/0}
+      timeout: 2s
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+vitaledge:
+  security:
+    secret-key: ${SECRET_KEY:}
+    algorithm: ${JWT_ALGORITHM:HS256}
+    access-token-expire-minutes: ${ACCESS_TOKEN_EXPIRE_MINUTES:15}
+    refresh-token-expire-days: ${REFRESH_TOKEN_EXPIRE_DAYS:7}
+    email-verification-expire-hours: ${EMAIL_VERIFICATION_EXPIRE_HOURS:24}
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:8080}
+    allow-credentials: true
+  rate-limit:
+    global-requests-per-minute: ${GLOBAL_RATE_LIMIT_PER_MINUTE:60}
+    registration-per-ip-per-hour: ${REGISTRATION_RATE_LIMIT:2}
+    login-per-ip-per-hour: ${LOGIN_IP_RATE_LIMIT:10}
+    login-per-email-per-hour: ${LOGIN_EMAIL_RATE_LIMIT:5}
+    assessment-create-per-hour: ${ASSESSMENT_CREATE_RATE_LIMIT:5}
+    assessment-answer-per-hour: ${ASSESSMENT_ANSWER_RATE_LIMIT:30}
+    assessment-complete-per-hour: ${ASSESSMENT_COMPLETE_RATE_LIMIT:5}
+    trusted-proxy-count: ${TRUSTED_PROXY_COUNT:0}
+  cache:
+    namespace: ${REDIS_PREFIX:vitaledge}
+    products-ttl-seconds: 300
+    product-detail-ttl-seconds: 600
+
+logging:
+  level:
+    root: INFO
+    com.vitaledge: INFO

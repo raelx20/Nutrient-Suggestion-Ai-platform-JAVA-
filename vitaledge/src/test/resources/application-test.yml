@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: com.vitaledge.TestH2Dialect
+    open-in-view: false
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:test-data.sql
+  flyway:
+    enabled: false
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+
+vitaledge:
+  security:
+    secret-key: ${VITALEDGE_TEST_SECRET:test-secret-key-for-vitaledge-tests-only-0123456789ab}
+  rate-limit:
+    trusted-proxy-count: 0
+    global-requests-per-minute: 100000
+    registration-per-ip-per-hour: 100000
+    login-per-ip-per-hour: 100000
+    login-per-email-per-hour: 100000
+    assessment-create-per-hour: 100000
+    assessment-answer-per-hour: 100000
+    assessment-complete-per-hour: 100000
