@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import tools.jackson.databind.JsonNode;
 
+@SuppressWarnings("deprecation")
 class ChatFlowTest extends BaseApiTest {
 
     @Test

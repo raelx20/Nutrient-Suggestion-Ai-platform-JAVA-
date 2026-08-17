@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 
+@SuppressWarnings("deprecation")
 class AssessmentFlowTest extends BaseApiTest {
 
     @Test

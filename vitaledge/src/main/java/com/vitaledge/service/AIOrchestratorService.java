@@ -2,7 +2,6 @@ package com.vitaledge.service;
 
 import com.vitaledge.ai.LlmClient;
 import com.vitaledge.domain.assessment.HealthProfile;
-import com.vitaledge.domain.conversation.Conversation;
 import com.vitaledge.domain.conversation.Message;
 import com.vitaledge.domain.conversation.SessionType;
 import java.util.ArrayList;
@@ -26,11 +25,9 @@ public class AIOrchestratorService {
     private static final int MAX_CONTEXT_CHARS = 2000;
 
     private final LlmClient llmClient;
-    private final HealthProfileService healthProfileService;
 
-    public AIOrchestratorService(LlmClient llmClient, HealthProfileService healthProfileService) {
+    public AIOrchestratorService(LlmClient llmClient) {
         this.llmClient = llmClient;
-        this.healthProfileService = healthProfileService;
     }
 
     /**

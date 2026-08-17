@@ -2,7 +2,6 @@ package com.vitaledge.service;
 
 import com.vitaledge.common.exception.ApiException;
 import com.vitaledge.common.exception.ForbiddenException;
-import com.vitaledge.common.exception.RateLimitException;
 import com.vitaledge.common.exception.UnauthorizedException;
 import com.vitaledge.common.util.EmailNormalizer;
 import com.vitaledge.config.ApplicationProperties;
@@ -22,8 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,10 +31,10 @@ import org.springframework.transaction.annotation.Transactional;
  * and the {@code /api/v1/auth} router: email normalization, BCrypt hashing, JWT
  * access + rotating refresh tokens, rate limiting, email verification and logout blacklist.
  */
+@SuppressWarnings("null")
 @Service
 public class AuthService {
 
-    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
     private static final String ROLE_CONSUMER = "CONSUMER";
 
     private final UserRepository userRepository;
@@ -227,7 +224,10 @@ public class AuthService {
     }
 
     private TokenResponse buildTokenResponse(User user, String refreshJwt) {
-        List<String> roles = user.getRoles().stream().map(Role::getName).toList();
+        List<String> roles = user.getRoles().stream()
+                .map(Role::getName)
+                .filter(java.util.Objects::nonNull)
+                .toList();
         String accessToken = jwtService.createAccessToken(user.getId().toString(), roles);
         return new TokenResponse(
                 accessToken,

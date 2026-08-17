@@ -1,7 +1,6 @@
 package com.vitaledge.web.dto.assessment;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public record AnswerResponse(

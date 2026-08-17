@@ -25,6 +25,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
  * Runs via failsafe ({@code mvn verify -Dgroups=integration}) and is skipped
  * automatically when the Docker daemon is unavailable.
  */
+@SuppressWarnings("resource")
 @Tag("integration")
 @Testcontainers(disabledWithoutDocker = true)
 @ExtendWith(SpringExtension.class)

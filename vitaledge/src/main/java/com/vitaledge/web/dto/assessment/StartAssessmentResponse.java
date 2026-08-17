@@ -1,9 +1,7 @@
 package com.vitaledge.web.dto.assessment;
 
-import com.vitaledge.domain.assessment.AssessmentAnswer;
 import com.vitaledge.domain.assessment.AssessmentSession;
 import java.util.List;
-import java.util.UUID;
 
 public record StartAssessmentResponse(
         AssessmentSummary assessment,

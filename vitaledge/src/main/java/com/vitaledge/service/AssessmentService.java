@@ -24,14 +24,12 @@ import com.vitaledge.web.dto.assessment.AnswerRequest;
 import com.vitaledge.web.dto.assessment.AnswerResponse;
 import com.vitaledge.web.dto.assessment.AssessmentDetailResponse;
 import com.vitaledge.web.dto.assessment.AssessmentSummary;
-import com.vitaledge.web.dto.assessment.HealthProfileResponse;
 import com.vitaledge.web.dto.assessment.QuestionResponse;
 import com.vitaledge.web.dto.assessment.RecommendationResponse;
 import com.vitaledge.web.dto.assessment.StartAssessmentResponse;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;
@@ -140,7 +138,6 @@ public class AssessmentService {
             saved.add(AnswerResponse.from(answer));
         }
 
-        int total = questionsFor(session).size();
         int answered = (int) answerRepository.countByAssessmentId(assessmentId);
         AssessmentSummary summary = AssessmentSummary.of(session, null, answered);
         return new AnswerResponse.BatchResult(saved, summary);
@@ -210,14 +207,6 @@ public class AssessmentService {
                 reco.isSafe(),
                 reco.isExcluded(),
                 components);
-    }
-
-    private List<Question> questionsFor(AssessmentSession session) {
-        if (session.getQuestionnaire() == null) {
-            return List.of();
-        }
-        return questionRepository
-                .findByQuestionnaireIdAndActiveTrueOrderByOrderIndexAsc(session.getQuestionnaire().getId());
     }
 
     private AssessmentSession requireActiveSession(UUID userId, UUID assessmentId) {

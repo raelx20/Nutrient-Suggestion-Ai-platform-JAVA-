@@ -14,10 +14,8 @@ import com.vitaledge.repository.ProductRepository;
 import com.vitaledge.repository.ProductRuleRepository;
 import com.vitaledge.repository.RecommendationRepository;
 import com.vitaledge.repository.RecommendationScoreHistoryRepository;
-import com.vitaledge.util.BmiCalculator;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +31,7 @@ import org.springframework.transaction.annotation.Transactional;
  * safe-product filtering against the health profile, deterministic scoring, ranking with
  * confidence values, and persistence of recommendations + per-metric score history.
  */
+@SuppressWarnings("null")
 @Service
 public class RecommendationService {
 
@@ -78,7 +77,10 @@ public class RecommendationService {
             return List.of();
         }
 
-        List<UUID> productIds = products.stream().map(Product::getId).toList();
+        List<UUID> productIds = products.stream()
+                .map(p -> p.getId() == null ? null : p.getId())
+                .filter(java.util.Objects::nonNull)
+                .toList();
         Map<UUID, List<ProductRule>> rulesByProduct = productRuleRepository
                 .findByProductIdInAndActiveTrue(productIds)
                 .stream()

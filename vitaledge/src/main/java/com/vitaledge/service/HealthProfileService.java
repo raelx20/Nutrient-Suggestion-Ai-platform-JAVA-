@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * BMI computation, per-dimension health scoring, risk-factor detection and the
  * counsellor-recommendation heuristic.
  */
+@SuppressWarnings("null")
 @Service
 public class HealthProfileService {
 

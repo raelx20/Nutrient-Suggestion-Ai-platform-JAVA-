@@ -1,7 +1,6 @@
 package com.vitaledge.service;
 
 import com.vitaledge.common.exception.RateLimitException;
-import com.vitaledge.config.ApplicationProperties;
 import com.vitaledge.infra.RedisClient;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +17,9 @@ public class RateLimitService {
     public static final String GLOBAL_KEY = "global";
 
     private final RedisClient redis;
-    private final ApplicationProperties properties;
 
-    public RateLimitService(RedisClient redis, ApplicationProperties properties) {
+    public RateLimitService(RedisClient redis) {
         this.redis = redis;
-        this.properties = properties;
     }
 
     public void check(String scope, String identifier, int limit, int windowSeconds) {

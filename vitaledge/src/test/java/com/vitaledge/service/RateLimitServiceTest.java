@@ -4,14 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.vitaledge.common.exception.RateLimitException;
-import com.vitaledge.config.ApplicationProperties;
 import com.vitaledge.infra.InMemoryRedisClient;
 import org.junit.jupiter.api.Test;
 
 class RateLimitServiceTest {
 
-    private final RateLimitService service = new RateLimitService(
-            new InMemoryRedisClient(), new ApplicationProperties());
+    private final RateLimitService service = new RateLimitService(new InMemoryRedisClient());
 
     @Test
     void allowsWithinLimitThenDenies() {

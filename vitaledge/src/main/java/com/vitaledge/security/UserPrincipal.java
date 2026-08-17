@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 /**
  * Spring Security principal wrapping the authenticated {@link User}.
  */
+@SuppressWarnings("null")
 public record UserPrincipal(
         UUID userId,
         String email,
@@ -23,6 +24,7 @@ public record UserPrincipal(
     public static UserPrincipal from(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(Role::getName)
+                .filter(java.util.Objects::nonNull)
                 .map(name -> new SimpleGrantedAuthority("ROLE_" + name))
                 .map(a -> (GrantedAuthority) a)
                 .toList();

@@ -2,8 +2,6 @@ package com.vitaledge.web.dto.assessment;
 
 import com.vitaledge.domain.assessment.AssessmentSession;
 import com.vitaledge.domain.assessment.HealthProfile;
-import com.vitaledge.domain.assessment.AssessmentSession;
-import com.vitaledge.domain.assessment.HealthProfile;
 import java.util.List;
 import java.util.UUID;
 

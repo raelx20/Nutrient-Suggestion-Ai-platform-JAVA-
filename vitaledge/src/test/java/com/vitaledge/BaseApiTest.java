@@ -19,6 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Base class for API-level integration tests running against H2 + in-memory Redis.
  * Provides helpers to register, verify and authenticate a fresh consumer.
  */
+@SuppressWarnings("deprecation")
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
