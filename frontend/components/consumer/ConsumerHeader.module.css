@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 var(--space-4);
+  background: var(--consumer-bg);
+  border-bottom: 1px solid var(--consumer-border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--consumer-primary-400), var(--consumer-primary-600));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: var(--font-bold);
+  font-size: var(--text-md);
+}
+
+.logoText {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .header {
+    padding: 0 var(--space-6);
+  }
+}

@@ -1,0 +1,14 @@
+.wrapper {
+  padding: var(--space-8);
+}
+
+.endpoint {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background: var(--admin-bg-tertiary);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-1) var(--space-2);
+  color: var(--admin-primary-700);
+}

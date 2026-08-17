@@ -1,0 +1,114 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.logoIcon {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--admin-primary-400), var(--admin-primary-600));
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-weight: var(--font-bold);
+  font-size: var(--text-md);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logoName {
+  font-weight: var(--font-bold);
+  color: var(--admin-sidebar-text-active);
+  font-size: var(--text-md);
+}
+
+.logoSub {
+  font-size: var(--text-xs);
+  color: var(--admin-sidebar-text);
+  opacity: 0.7;
+}
+
+.groups {
+  flex: 1;
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.groupLabel {
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--admin-sidebar-text);
+  opacity: 0.6;
+  padding: 0 var(--space-2);
+  margin-bottom: var(--space-1);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--admin-sidebar-text);
+  font-size: var(--text-base);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.item:hover {
+  background: var(--admin-sidebar-hover);
+  color: var(--admin-sidebar-text-active);
+}
+
+.active {
+  background: var(--admin-sidebar-active);
+  color: var(--admin-sidebar-text-active);
+  font-weight: var(--font-medium);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    width: 260px;
+  }
+}

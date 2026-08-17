@@ -1,0 +1,39 @@
+.page {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.back {
+  align-self: flex-start;
+  font-size: var(--text-base);
+  color: var(--consumer-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.back:hover {
+  color: var(--consumer-primary-600);
+}
+
+.skeleton {
+  width: 100%;
+  max-width: 480px;
+}
+
+.product {
+  width: 100%;
+  max-width: 480px;
+}
+
+.link {
+  color: var(--consumer-primary-600);
+  font-weight: var(--font-medium);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
