@@ -1,0 +1,26 @@
+.tabs {
+  display: flex;
+  gap: var(--space-1);
+  border-bottom: 1px solid var(--admin-border);
+  overflow-x: auto;
+}
+
+.tab {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-base);
+  color: var(--admin-text-secondary);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.tab:hover {
+  color: var(--admin-text-primary);
+}
+
+.active {
+  color: var(--admin-primary-600);
+  border-bottom-color: var(--admin-primary-500);
+  font-weight: var(--font-medium);
+}

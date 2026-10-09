@@ -1,0 +1,119 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--gray-900);
+}
+
+.required {
+  color: var(--error-600);
+  margin-left: var(--space-1);
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--consumer-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-base);
+  color: var(--gray-900);
+  background: var(--white);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--consumer-primary-500);
+  box-shadow: 0 0 0 3px var(--consumer-primary-100);
+}
+
+.input[aria-invalid="true"] {
+  border-color: var(--error-500);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.error {
+  font-size: var(--text-xs);
+  color: var(--error-700);
+}
+
+/* ---- Segmented (boolean) ---- */
+
+.segmented {
+  display: inline-flex;
+  background: var(--consumer-bg-tertiary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-1);
+  gap: var(--space-1);
+}
+
+.segment,
+.segmentActive {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.segment {
+  color: var(--consumer-text-secondary);
+}
+
+.segment:hover {
+  color: var(--gray-900);
+}
+
+.segmentActive {
+  background: var(--white);
+  color: var(--consumer-primary-700);
+  box-shadow: var(--shadow-xs);
+}
+
+/* ---- Option lists (radio / checkbox) ---- */
+
+.optionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 1px solid var(--consumer-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-base);
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.option:has(input:checked) {
+  border-color: var(--consumer-primary-500);
+  background: var(--consumer-primary-50);
+  color: var(--consumer-primary-700);
+}
+
+.option:hover {
+  border-color: var(--consumer-primary-400);
+}
+
+.option input {
+  accent-color: var(--consumer-primary-600);
+}
+
+.optionLabel {
+  text-transform: capitalize;
+}

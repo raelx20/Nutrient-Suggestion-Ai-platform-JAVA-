@@ -1,0 +1,43 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--admin-border);
+  flex-wrap: wrap;
+}
+
+.info {
+  font-size: var(--text-sm);
+  color: var(--admin-text-tertiary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid var(--admin-border);
+  border-radius: var(--radius-md);
+  color: var(--admin-text-secondary);
+  font-size: var(--text-md);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.button:hover:not(:disabled) {
+  background: var(--admin-bg-tertiary);
+  color: var(--admin-text-primary);
+}
+
+.pageInfo {
+  font-size: var(--text-sm);
+  color: var(--admin-text-secondary);
+}
